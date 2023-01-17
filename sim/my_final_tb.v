@@ -67,7 +67,7 @@ end
 integer i;
 // ===== pattern files ===== // 
 
-reg [23*8-1:0] input_a0_golden_file,         input_a1_golden_file,         input_a2_golden_file,         input_a3_golden_file:
+reg [23*8-1:0] input_a0_golden_file,         input_a1_golden_file,         input_a2_golden_file,         input_a3_golden_file;
 reg [30*8-1:0] conv3_pool_1_b0_golden_file,  conv3_pool_1_b1_golden_file,  conv3_pool_1_b2_golden_file,  conv3_pool_1_b3_golden_file;
 reg [25*8-1:0] conv3_2_a0_golden_file,       conv3_2_a1_golden_file,       conv3_2_a2_golden_file,       conv3_2_a3_golden_file;
 reg [30*8-1:0] conv3_pool_3_b0_golden_file,  conv3_pool_3_b1_golden_file,  conv3_pool_3_b2_golden_file,  conv3_pool_3_b3_golden_file;
@@ -134,11 +134,11 @@ wire [CH_NUM*ACT_PER_ADDR*BW_PER_ACT-1:0] sram_wdata_b;
 
 // ===== instantiation ===== //
 Resnet_top #(
-.CH_NUM(CH_NUM)                   //input channel number = 1
-.ACT_PER_ADDR(ACT_PER_ADDR)       //how many pixel       = 4
-.BW_PER_ACT(BW_PER_ACT)           //bit per pixel        = 12
-.WEIGHT_PER_ADDR(WEIGHT_PER_ADDR) //9*8 weight           = 72
-.BIAS_PER_ADDR(BIAS_PER_ADDR)     //8 bias               = 8
+.CH_NUM(CH_NUM),                   //input channel number = 1
+.ACT_PER_ADDR(ACT_PER_ADDR),       //how many pixel       = 4
+.BW_PER_ACT(BW_PER_ACT),           //bit per pixel        = 12
+.WEIGHT_PER_ADDR(WEIGHT_PER_ADDR), //9*8 weight           = 72
+.BIAS_PER_ADDR(BIAS_PER_ADDR),     //8 bias               = 8
 .BW_PER_PARAM(BW_PER_PARAM)
 )
 top(
@@ -508,7 +508,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<3; ch=+1) begin
+                for(ch0=0; ch<3; ch=+1) begin
                     for (row=0; row<57; row=row+1) begin
                         for (col=0; col<57; col=col+1) begin
                             if(input_ans_a0[count] === sram_207936x48b_a0.mem[row*57+col+ch*57*57]) begin
@@ -542,7 +542,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<3; ch=+1) begin
+                for(ch0=0; ch<3; ch=+1) begin
                     for (row=0; row<57; row=row+1) begin
                         for (col=0; col<56; col=col+1) begin
                             if(input_ans_a1[count] === sram_207936x48b_a1.mem[row*57+col+ch*57*57]) begin
@@ -576,7 +576,7 @@ initial begin
                 end
 
                 count = 0;
-                for(ch0=; ch<3; ch=+1) begin
+                for(ch0=0; ch<3; ch=+1) begin
                     for (row=0; row<56; row=row+1) begin
                         for (col=0; col<57; col=col+1) begin
                             if(input_ans_a2[count] === sram_207936x48b_a2.mem[row*57+col+ch*57*57]) begin
@@ -610,7 +610,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<3; ch=+1) begin
+                for(ch0=0; ch<3; ch=+1) begin
                     for (row=0; row<56; row=row+1) begin
                         for (col=0; col<56; col=col+1) begin
                             if(input_ans_30[count] === sram_207936x48b_a3.mem[row*57+col+ch*57*57]) begin
@@ -663,7 +663,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<28; row=row+1) begin
                         for (col=0; col<28; col=col+1) begin
                             if(input_ans_b0[count] === sram_50176x48b_b0.mem[row*57+col+ch*57*57]) begin
@@ -697,7 +697,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<28; row=row+1) begin
                         for (col=0; col<28; col=col+1) begin
                             if(input_ans_b1[count] === sram_50176x48b_b1.mem[row*57+col+ch*57*57]) begin
@@ -731,7 +731,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<28; row=row+1) begin
                         for (col=0; col<28; col=col+1) begin
                             if(input_ans_b2[count] === sram_50176x48b_b2.mem[row*57+col+ch*57*57]) begin
@@ -765,7 +765,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<28; row=row+1) begin
                         for (col=0; col<28; col=col+1) begin
                             if(input_ans_b3[count] === sram_50176x48b_b3.mem[row*57+col+ch*57*57]) begin
@@ -817,7 +817,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<28; row=row+1) begin
                         for (col=0; col<28; col=col+1) begin
                             if(conv3_2_ans_a0[count] === sram_207936x48b_a0.mem[row*57+col+ch*57*57]) begin
@@ -852,7 +852,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<28; row=row+1) begin
                         for (col=0; col<27; col=col+1) begin
                             if(conv3_2_ans_a1[count] === sram_207936x48b_a1.mem[row*57+col+ch*57*57]) begin
@@ -888,7 +888,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<27; row=row+1) begin
                         for (col=0; col<28; col=col+1) begin
                             if(conv3_2_ans_a2[count] === sram_207936x48b_a2.mem[row*57+col+ch*57*57]) begin
@@ -923,7 +923,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<27; row=row+1) begin
                         for (col=0; col<27; col=col+1) begin
                             if(conv3_2_ans_a3[count] === sram_207936x48b_a3.mem[row*57+col+ch*57*57]) begin
@@ -975,7 +975,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<14; row=row+1) begin
                         for (col=0; col<14; col=col+1) begin
                             if(conv3_pool_3_ans_b0[count] === sram_50176x48b_b0.mem[row*57+col+ch*57*57]) begin
@@ -1010,7 +1010,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<14; row=row+1) begin
                         for (col=0; col<13; col=col+1) begin
                             if(conv3_pool_3_ans_b1[count] === sram_50176x48b_b1.mem[row*57+col+ch*57*57]) begin
@@ -1045,7 +1045,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<13; row=row+1) begin
                         for (col=0; col<14; col=col+1) begin
                             if(conv3_pool_3_ans_b2[count] === sram_50176x48b_b2.mem[row*57+col+ch*57*57]) begin
@@ -1080,7 +1080,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<13; row=row+1) begin
                         for (col=0; col<13; col=col+1) begin
                             if(conv3_pool_3_ans_b3[count] === sram_50176x48b_b3.mem[row*57+col+ch*57*57]) begin
@@ -1132,7 +1132,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<13; row=row+1) begin
                         for (col=0; col<13; col=col+1) begin
                             if(res1_conv3_4_ans_a0[count] === sram_207936x48b_a0.mem[row*57+col+ch*57*57]) begin
@@ -1166,7 +1166,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<13; row=row+1) begin
                         for (col=0; col<13; col=col+1) begin
                             if(res1_conv3_4_ans_a1[count] === sram_207936x48b_a1.mem[row*57+col+ch*57*57]) begin
@@ -1201,7 +1201,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<13; row=row+1) begin
                         for (col=0; col<13; col=col+1) begin
                             if(res1_conv3_4_ans_a2[count] === sram_207936x48b_a2.mem[row*57+col+ch*57*57]) begin
@@ -1236,7 +1236,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=+1) begin
+                for(ch0=0; ch<32; ch=+1) begin
                     for (row=0; row<13; row=row+1) begin
                         for (col=0; col<13; col=col+1) begin
                             if(res1_conv3_4_ans_a3[count] === sram_207936x48b_a3.mem[row*57+col+ch*57*57]) begin
@@ -1288,7 +1288,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<13; row=row+1) begin
                         for (col=0; col<13; col=col+1) begin
                             if(res1_conv3_5_ans_b0[count] === sram_50176x48b_b0.mem[row*57+col+ch*57*57]) begin
@@ -1323,7 +1323,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<13; row=row+1) begin
                         for (col=0; col<12; col=col+1) begin
                             if(res1_conv3_5_ans_b1[count] === sram_50176x48b_b1.mem[row*57+col+ch*57*57]) begin
@@ -1358,7 +1358,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<12; row=row+1) begin
                         for (col=0; col<13; col=col+1) begin
                             if(res1_conv3_5_ans_b2[count] === sram_50176x48b_b2.mem[row*57+col+ch*57*57]) begin
@@ -1393,7 +1393,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<12; row=row+1) begin
                         for (col=0; col<12; col=col+1) begin
                             if(res1_conv3_5_ans_b3[count] === sram_50176x48b_b3.mem[row*57+col+ch*57*57]) begin
@@ -1445,7 +1445,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<12; row=row+1) begin
                         for (col=0; col<12; col=col+1) begin
                             if(res2_conv3_6_ans_a0[count] === sram_207936x48b_a0.mem[row*57+col+ch*57*57]) begin
@@ -1479,7 +1479,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<12; row=row+1) begin
                         for (col=0; col<12; col=col+1) begin
                             if(res2_conv3_6_ans_a1[count] === sram_207936x48b_a1.mem[row*57+col+ch*57*57]) begin
@@ -1514,7 +1514,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<12; row=row+1) begin
                         for (col=0; col<12; col=col+1) begin
                             if(res2_conv3_6_ans_a2[count] === sram_207936x48b_a2.mem[row*57+col+ch*57*57]) begin
@@ -1549,7 +1549,7 @@ initial begin
                 end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<12; row=row+1) begin
                         for (col=0; col<12; col=col+1) begin
                             if(res2_conv3_6_ans_a3[count] === sram_207936x48b_a3.mem[row*57+col+ch*57*57]) begin
@@ -1601,7 +1601,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<12; row=row+1) begin
                         for (col=0; col<12; col=col+1) begin
                             if(res2_conv3_7_ans_b0[count] === sram_50176x48b_b0.mem[row*57+col+ch*57*57]) begin
@@ -1635,7 +1635,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<12; row=row+1) begin
                         for (col=0; col<11; col=col+1) begin
                             if(res2_conv3_7_ans_b1[count] === sram_50176x48b_b1.mem[row*57+col+ch*57*57]) begin
@@ -1670,7 +1670,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<11; row=row+1) begin
                         for (col=0; col<12; col=col+1) begin
                             if(res2_conv3_7_ans_b2[count] === sram_50176x48b_b2.mem[row*57+col+ch*57*57]) begin
@@ -1705,7 +1705,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<32; ch=ch+1) begin
+                for(ch0=0; ch<32; ch=ch+1) begin
                     for (row=0; row<11; row=row+1) begin
                         for (col=0; col<11; col=col+1) begin
                             if(res2_conv3_7_ans_b3[count] === sram_50176x48b_b3.mem[row*57+col+ch*57*57]) begin
@@ -1757,7 +1757,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<6; row=row+1) begin
                         for (col=0; col<6; col=col+1) begin
                             if(conv3_pool_8_ans_a0[count] === sram_207936x48b_a0.mem[row*57+col+ch*57*57]) begin
@@ -1791,7 +1791,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<6; row=row+1) begin
                         for (col=0; col<5; col=col+1) begin
                             if(conv3_pool_8_ans_a1[count] === sram_207936x48b_a1.mem[row*57+col+ch*57*57]) begin
@@ -1825,7 +1825,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<5; row=row+1) begin
                         for (col=0; col<6; col=col+1) begin
                             if(conv3_pool_8_ans_a2[count] === sram_207936x48b_a2.mem[row*57+col+ch*57*57]) begin
@@ -1859,7 +1859,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<5; row=row+1) begin
                         for (col=0; col<5; col=col+1) begin
                             if(conv3_pool_8_ans_a3[count] === sram_207936x48b_a3.mem[row*57+col+ch*57*57]) begin
@@ -1910,7 +1910,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<5; row=row+1) begin
                         for (col=0; col<5; col=col+1) begin
                             if(res3_conv3_9_ans_b0[count] === sram_50176x48b_b0.mem[row*57+col+ch*57*57]) begin
@@ -1944,7 +1944,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<5; row=row+1) begin
                         for (col=0; col<5; col=col+1) begin
                             if(res3_conv3_9_ans_b1[count] === sram_50176x48b_b1.mem[row*57+col+ch*57*57]) begin
@@ -1978,7 +1978,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<5; row=row+1) begin
                         for (col=0; col<5; col=col+1) begin
                             if(res3_conv3_9_ans_b2[count] === sram_50176x48b_b2.mem[row*57+col+ch*57*57]) begin
@@ -2012,7 +2012,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<5; row=row+1) begin
                         for (col=0; col<5; col=col+1) begin
                             if(res3_conv3_9_ans_b3[count] === sram_50176x48b_b3.mem[row*57+col+ch*57*57]) begin
@@ -2063,7 +2063,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<5; row=row+1) begin
                         for (col=0; col<5; col=col+1) begin
                             if(res3_conv3_10_ans_a0[count] === sram_207936x48b_a0.mem[row*57+col+ch*57*57]) begin
@@ -2097,7 +2097,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<5; row=row+1) begin
                         for (col=0; col<4; col=col+1) begin
                             if(res3_conv3_10_ans_a1[count] === sram_207936x48b_a1.mem[row*57+col+ch*57*57]) begin
@@ -2131,7 +2131,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<4; row=row+1) begin
                         for (col=0; col<5; col=col+1) begin
                             if(res3_conv3_10_ans_a2[count] === sram_207936x48b_a2.mem[row*57+col+ch*57*57]) begin
@@ -2165,7 +2165,7 @@ initial begin
                 // end
     
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<4; row=row+1) begin
                         for (col=0; col<4; col=col+1) begin
                             if(res3_conv3_10_ans_a3[count] === sram_207936x48b_a3.mem[row*57+col+ch*57*57]) begin
@@ -2216,7 +2216,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<2; row=row+1) begin
                         for (col=0; col<2; col=col+1) begin
                             if(conv3_pool_11_ans_b0[count] === sram_50176x48b_b0.mem[row*57+col+ch*57*57]) begin
@@ -2250,7 +2250,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<2; row=row+1) begin
                         for (col=0; col<2; col=col+1) begin
                             if(conv3_pool_11_ans_b1[count] === sram_50176x48b_b1.mem[row*57+col+ch*57*57]) begin
@@ -2284,7 +2284,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<2; row=row+1) begin
                         for (col=0; col<2; col=col+1) begin
                             if(conv3_pool_11_ans_b2[count] === sram_50176x48b_b2.mem[row*57+col+ch*57*57]) begin
@@ -2318,7 +2318,7 @@ initial begin
                 // end
 
                 count = 0;
-                for(ch0=; ch<64; ch=ch+1) begin
+                for(ch0=0; ch<64; ch=ch+1) begin
                     for (row=0; row<2; row=row+1) begin
                         for (col=0; col<2; col=col+1) begin
                             if(conv3_pool_11_ans_b3[count] === sram_50176x48b_b3.mem[row*57+col+ch*57*57]) begin
@@ -2430,7 +2430,7 @@ initial begin
             RES3_CONV3_10:  $display("Your RES3_CONV3_10 layer is correct!");
             CONV3_POOL_11:  $display("Your CONV3_POOL_11 layer is correct!");
             GLOBAL_AVE:     $display("Your GLOBAL_AVE layer is correct!");
-            FC:             $display("Your FC layer is correct!")  
+            FC:             $display("Your FC layer is correct!");
         endcase
         // $write("",27);
         $display("Total cycle count = %0d", cycle_cnt);
@@ -2519,7 +2519,7 @@ task load_param;
         $readmemb("param/conv5_bias.dat", conv3_pool_11_b);
         // FC
         $readmemb("param/output_fc_weight.dat", fc_w);
-        $readmemb("param/output_fc_bias.dat", fc_b)
+        $readmemb("param/output_fc_bias.dat", fc_b);
 
 
         // store weights into sram ( use sram_2636x576b_weight )
@@ -2676,7 +2676,7 @@ task load_golden(
 
         index_digit_2 = (index/100);
         index_digit_1 = (index%100)/10;
-        index_digit_0 = (index%10)
+        index_digit_0 = (index%10);
 
         input_a0_golden_file[13*8+:`PAT_NAME_LENGTH*8] = {index_digit_2, index_digit_1, index_digit_0};
         input_a1_golden_file[13*8+:`PAT_NAME_LENGTH*8] = {index_digit_2, index_digit_1, index_digit_0};
@@ -3078,3 +3078,4 @@ input integer ans_offset
         endcase
     end
 endtask
+endmodule

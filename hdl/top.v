@@ -1,8 +1,8 @@
-//`include "resblock.v"
-//`include "adder.v"
-//`include "CONV3.v"
-//`include "fc.v"
-//`include "globalave.v"
+`include "resblock.v"
+`include "adder.v"
+`include "CONV3.v"
+`include "fc.v"
+`include "globalave.v"
 module top #(
 parameter CH_NUM = 1,    //input channel number
 parameter ACT_PER_ADDR = 4, //how many pixel

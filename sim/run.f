@@ -1,4 +1,4 @@
-my_final.tb.v
+my_final_tb.v
 ../hdl/top.v
 ../hdl/CONV3.v
 ../hdl/adder.v
